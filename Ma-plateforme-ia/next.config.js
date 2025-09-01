@@ -2,8 +2,6 @@
 const nextConfig = {
   // Configuration optimisée pour production
   experimental: {
-    optimizeFonts: true,
-    optimizeImages: true,
     optimizeCss: true,
   },
   
@@ -119,9 +117,6 @@ const nextConfig = {
   },
 
   // Variables d'environnement publiques
-  env: {
-    CUSTOM_KEY: process.env.CUSTOM_KEY,
-  },
 
   // Configuration pour les API routes
   async rewrites() {
@@ -155,36 +150,6 @@ const nextConfig = {
     // Variables accessibles côté client
     staticFolder: '/static',
   },
-
-  // Configuration pour Vercel
-  async export() {
-    // Configuration pour l'export statique si nécessaire
-  },
-
-  // Configuration pour les domaines et CORS
-  async corsHeaders() {
-    return [
-      {
-        source: '/api/(.*)',
-        headers: [
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: process.env.NODE_ENV === 'production' 
-              ? 'https://votre-domaine.com' 
-              : 'http://localhost:3000'
-          },
-          {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST, PUT, DELETE, OPTIONS'
-          },
-          {
-            key: 'Access-Control-Allow-Headers',
-            value: 'Content-Type, Authorization'
-          }
-        ]
-      }
-    ]
-  }
 }
 
 module.exports = nextConfig
